@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#EAF3FF" />
+<title>Panel Generator — GENERATOR AM PREMIUM GENOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/panel.css">
+</head>
+<body>
+
+<nav class="nav show">
+  <a class="brand" href="create.html">
+    <div class="brand-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <div class="brand-text">
+      <div class="brand-main">GENERATOR AM PREMIUM</div>
+      <div class="brand-sub">GENOS SYSTEM</div>
+    </div>
+  </a>
+</nav>
+
+<section class="page active">
+  <div class="create-wrap">
+    <div class="create-head">
+      <h1>PANEL GENERATOR</h1>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <div class="user-chip">
+          <div class="avatar" id="userAvatar">G</div>
+          <span id="userLabel">user</span>
+        </div>
+        <button class="btn" onclick="doLogout()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Keluar
+        </button>
+      </div>
+    </div>
+
+    <div class="video-box">
+      <video id="introVideo" src="https://files.catbox.moe/4v5up0.mp4" autoplay muted loop playsinline></video>
+      <div class="video-overlay"></div>
+      <div class="video-label">TUTORIAL GENERATOR</div>
+    </div>
+
+    <div class="steps">
+      <!-- STEP 1 -->
+      <div class="step" id="stepCard1">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Masukkan Email Target</h4>
+          <p>Isi email yang ingin diaktifkan akses premiumnya. Pastikan email valid dan aktif.</p>
+          <input type="email" id="targetEmail" placeholder="contoh@email.com" oninput="validateEmail()"/>
+          <span class="status idle" id="status1"><span class="dot"></span> MENUNGGU INPUT</span>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="stepCard2">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Kirim &amp; Aktifkan Premium</h4>
+          <p id="step2Desc">Klik tombol di bawah untuk mengirim link verifikasi ke email target. Setelah link terkirim, tombol akan berubah untuk mengaktifkan premium.</p>
+          <div id="codeWrap" style="display:none">
+            <input type="text" id="verifyCode" placeholder="Tempel link / oobCode dari email target"/>
+          </div>
+          <button class="btn btn-primary" id="btnStep2" onclick="handleStep2()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span id="btnStep2Text">KIRIM LINK VERIFIKASI</span>
+          </button>
+          <br/>
+          <span class="status idle" id="status2" style="margin-top:12px"><span class="dot"></span> BELUM DIKIRIM</span>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="stepCard3">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Selesai</h4>
+          <p>Proses selesai. Akses premium akan otomatis aktif dalam beberapa menit ke depan.</p>
+          <span class="status idle" id="status3"><span class="dot"></span> BELUM DIPROSES</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-card" id="resultCard">
+      <div class="result-head">
+        <div class="r-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <h3>HASIL GENERATE</h3>
+          <p>Detail lengkap proses aktivasi premium</p>
+        </div>
+      </div>
+      <div id="resultBody"></div>
+    </div>
+
+    <!-- RIWAYAT -->
+    <div class="riwayat-section">
+      <div class="riwayat-head">
+        <h3>RIWAYAT GENERATE</h3>
+        <button class="btn" onclick="loadHistory()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          REFRESH
+        </button>
+      </div>
+      <div class="riwayat-list" id="riwayatList">
+        <div class="empty-state">Memuat riwayat...</div>
+      </div>
+    </div>
+
+    <footer>COPYRIGHT &copy; <b>GENOS SYSTEM</b> — ALL RIGHTS RESERVED</footer>
+  </div>
+</section>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal modal-detail">
+    <div class="modal-head">
+      <h3>DETAIL RESPONSE JSON</h3>
+      <button class="modal-close" onclick="document.getElementById('detailModal').classList.remove('show')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <pre id="detailJson"></pre>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+  import { initCreatePanel } from "./assets/js/create-panel.js";
+  import { initParticles } from "./assets/js/particles.js";
+
+  initParticles();
+  initCreatePanel();
+
+  document.querySelectorAll(".modal-overlay").forEach(ov => {
+    ov.addEventListener("click", (e) => {
+      if (e.target === ov) ov.classList.remove("show");
+    });
+  });
+</script>
+</body>
+</html>
