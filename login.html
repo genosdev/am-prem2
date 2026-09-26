@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#EAF3FF" />
+<title>Login — GENERATOR AM PREMIUM GENOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+
+<nav class="nav show">
+  <a class="brand" href="index.html">
+    <div class="brand-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <div class="brand-text">
+      <div class="brand-main">GENERATOR AM PREMIUM</div>
+      <div class="brand-sub">GENOS SYSTEM</div>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <a class="btn btn-ghost" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Kembali
+    </a>
+    <a class="btn btn-primary" href="register.html">Daftar</a>
+  </div>
+</nav>
+
+<section class="page active">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>LOGIN</h2>
+      <div class="sub">MASUK KE PANEL GENERATOR</div>
+      <div class="alert err" id="loginAlert"></div>
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="Masukkan username" autocomplete="username"/>
+        <span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Masukkan password" autocomplete="current-password"/>
+        <span class="fi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+      </div>
+      <label class="remember">
+        <input type="checkbox" id="loginRemember"/>
+        <span class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        Ingat Saya
+      </label>
+      <button class="btn btn-primary btn-block" id="btnDoLogin">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        MASUK
+      </button>
+      <div class="auth-switch">Belum punya akun? <a href="register.html">Daftar Sekarang</a></div>
+      <div class="auth-switch" style="margin-top:10px"><a style="color:var(--muted);font-weight:700" href="index.html">&larr; Kembali</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+  import { doLogin, redirectIfLoggedIn } from "./assets/js/auth.js";
+  import { initParticles } from "./assets/js/particles.js";
+
+  initParticles();
+  redirectIfLoggedIn();
+
+  document.getElementById("btnDoLogin").addEventListener("click", doLogin);
+  document.getElementById("loginPass").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doLogin();
+  });
+</script>
+</body>
+</html>
