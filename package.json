@@ -1,0 +1,9 @@
+{
+  "name": "generator-am-premium-genos",
+  "version": "1.0.0",
+  "description": "Generator AM Premium Genos",
+  "private": true,
+  "engines": {
+    "node": ">=18.x"
+  }
+}
